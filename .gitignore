@@ -1,0 +1,29 @@
+# Node modules (don't push them)
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# OS / IDE / Editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Environment files
+.env
+
+# Build / cache files
+dist/
+.cache/
+.build/
+tmp/
