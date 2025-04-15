@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TempMail</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+
+  <!-- ✅ AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3785436230198446"
+    crossorigin="anonymous"></script>
+
   <style>
     :root {
       --primary: #111;
@@ -173,6 +178,19 @@
       margin-top: 4rem;
     }
 
+    footer {
+      margin-top: 4rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #999;
+    }
+
+    footer a {
+      color: #666;
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+
     @media screen and (max-width: 600px) {
       .email-header {
         flex-direction: column;
@@ -219,6 +237,19 @@
       </div>
     </div>
 
+    <!-- ✅ AdSense Ad Placement -->
+    <div style="margin: 2rem 0; text-align:center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-3785436230198446"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
     <div class="inbox-container">
       <div class="inbox" id="inbox">
         <p><strong>Inbox</strong> <small>(0 messages)</small></p>
@@ -237,6 +268,13 @@
       </div>
     </div>
   </div>
+
+  <footer>
+    <a href="/privacy.html">Privacy Policy</a> |
+    <a href="/terms.html">Terms of Service</a> |
+    <a href="/about.html">About</a> |
+    <a href="/contact.html">Contact</a>
+  </footer>
 
   <script>
     async function generateEmail() {
