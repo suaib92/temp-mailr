@@ -196,6 +196,7 @@
       text-decoration: none;
     }
 
+    /* Mobile Adjustments */
     .mobile-sticky-ad {
       display: none;
     }
@@ -220,7 +221,19 @@
         z-index: 999;
         text-align: center;
       }
+
+      /* Sidebar ads stack for mobile view */
+      aside {
+        margin-bottom: 1rem;
+        width: 100%;
+      }
+
+      /* Adjust the space between the sections */
+      .inbox-container {
+        margin-top: 1rem;
+      }
     }
+
   </style>
 </head>
 <body>
@@ -254,7 +267,7 @@
       </div>
       <div class="right">
         <button onclick="copyEmail()">📋Click to Copy</button>
-        <button onclick="generateEmail()">🔁 Change Mail</button>
+        <button onclick="generateEmail()">🔁 Generate Mail</button>
         <button onclick="fetchInbox()">📨 Refresh Inbox</button>
         <button onclick="settings()">⚙️ Setting</button>
         <div class="toggle">
@@ -406,10 +419,6 @@ window.addEventListener("DOMContentLoaded", () => {
     function settings() {
       alert("⚙️ Settings coming soon...");
     }
-
-  
-
-
 
   </script>
 
