@@ -281,7 +281,7 @@
     <div class="inbox-container">
       
       <!-- ✅ Left Sidebar Ad -->
-      <aside style="background:white; padding:1rem; border-radius:12px; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+      <aside id="left-ad" style="background:white; padding:1rem; border-radius:12px; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-3785436230198446"
@@ -299,7 +299,7 @@
         </div>
 
         <!-- ✅ Middle Content Ad -->
-        <div style="margin: 2rem 0; text-align:center;">
+        <div style="margin: 2rem 0; text-align:center;" id="middle-ad">
           <ins class="adsbygoogle"
                style="display:block"
                data-ad-client="ca-pub-3785436230198446"
@@ -322,7 +322,7 @@
       </div>
 
       <!-- ✅ Right Sidebar Ad -->
-      <aside style="background:white; padding:1rem; border-radius:12px; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+      <aside id="right-ad" style="background:white; padding:1rem; border-radius:12px; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-3785436230198446"
@@ -354,26 +354,22 @@
   </footer>
 
   <script>
+    let autoRefreshEnabled = true;
 
-let autoRefreshEnabled = true;
+    window.addEventListener("DOMContentLoaded", () => {
+      const checkbox = document.getElementById("autorefresh");
+      if (checkbox) {
+        checkbox.addEventListener("change", (e) => {
+          autoRefreshEnabled = e.target.checked;
+        });
+      }
 
-// This runs only after the DOM is loaded
-window.addEventListener("DOMContentLoaded", () => {
-  // Setup the checkbox toggle logic
-  const checkbox = document.getElementById("autorefresh");
-  if (checkbox) {
-    checkbox.addEventListener("change", (e) => {
-      autoRefreshEnabled = e.target.checked;
+      setInterval(() => {
+        if (autoRefreshEnabled) {
+          fetchInbox();
+        }
+      }, 15000);
     });
-  }
-
-  // Auto-refresh every 5 seconds
-  setInterval(() => {
-    if (autoRefreshEnabled) {
-      fetchInbox();
-    }
-  }, 15000);
-});
 
     async function generateEmail() {
       const emailDisplay = document.getElementById("email");
@@ -397,14 +393,14 @@ window.addEventListener("DOMContentLoaded", () => {
         inbox.innerHTML = `<p><strong>Inbox</strong> <small>(${data.length} messages)</small></p>`;
         if (!Array.isArray(data) || data.length === 0) {
           inbox.innerHTML += "<p>No emails yet.</p>";
-          return;
+        } else {
+          data.forEach(msg => {
+            const item = document.createElement("div");
+            item.className = "inbox-item";
+            item.innerHTML = `<strong>${msg.from?.address || "Unknown Sender"}</strong><span>${msg.subject || "No Subject"}</span>`;
+            inbox.appendChild(item);
+          });
         }
-        data.forEach(msg => {
-          const item = document.createElement("div");
-          item.className = "inbox-item";
-          item.innerHTML = `<strong>${msg.from?.address || "Unknown Sender"}</strong><span>${msg.subject || "No Subject"}</span>`;
-          inbox.appendChild(item);
-        });
       } catch (err) {
         console.error("Inbox fetch error:", err);
         inbox.innerHTML += "<p>❌ Failed to load inbox.</p>";
@@ -419,7 +415,6 @@ window.addEventListener("DOMContentLoaded", () => {
     function settings() {
       alert("⚙️ Settings coming soon...");
     }
-
   </script>
 
 </body>
