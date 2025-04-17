@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Coming Soon - TempMail</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         * {
             margin: 0;
@@ -162,22 +163,24 @@
     </style>
 </head>
 <body>
+    <header class="top-bar">
+        <div class="top-bar-content">
+          <a href="/" class="logo">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            TempMail
+          </a>
+          <div class="buttons">
+            
+            <button class="btn btn-primary" onclick="window.location.href='/'">
+                ← Back to Home
+              </button>
+          </div>
+        </div>
+      </header>
     <div class="container">
-        <header class="top-bar">
-            <div class="top-bar-content">
-              <a href="/" class="logo">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                </svg>
-                TempMail
-              </a>
-              <div class="buttons">
-                <button class="btn btn-primary" onclick="window.location.href='/'">
-                    ← Back to Home
-                  </button>
-              </div>
-            </div>
-          </header>
+        
 
         <div class="premium-badge">
             <span class="confetti">✨</span>
