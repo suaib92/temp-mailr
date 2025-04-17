@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation - TempMail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="top-bar-content">
+      <a href="/" class="logo">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        TempMail
+      </a>
+      <div class="buttons">
+        <button class="btn btn-primary" onclick="window.location.href='/'">
+            ← Back to Home
+          </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="content-card">
+      <h1>TempMail Documentation</h1>
+      <p class="text-muted">Your guide to using our temporary email service effectively</p>
+
+      <div class="doc-section">
+        <h2>📚 Table of Contents</h2>
+        <ol class="toc-list">
+          <li><a href="#getting-started">Getting Started</a></li>
+          <li><a href="#key-features">Key Features</a></li>
+          <li><a href="#usage-guide">Usage Guide</a></li>
+          <li><a href="#faq">Frequently Asked Questions</a></li>
+          <li><a href="#troubleshooting">Troubleshooting</a></li>
+        </ol>
+      </div>
+
+      <div class="doc-section" id="getting-started">
+        <h2>🚀 Getting Started</h2>
+        <div class="step">
+          <h3>1. Generate Email Address</h3>
+          <p>Click the "Generate Email" button to create a random temporary email address.</p>
+          <div class="example-box">
+            <code>example@tempmail.in</code>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>2. Use Your Temporary Email</h3>
+          <p>Use the generated email address for signups, verifications, or any temporary need.</p>
+        </div>
+
+        <div class="step">
+          <h3>3. Check Your Inbox</h3>
+          <p>Messages will appear automatically in your inbox. No registration required!</p>
+        </div>
+      </div>
+
+      <div class="doc-section" id="key-features">
+        <h2>🌟 Key Features</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>⏳ Auto-Expiring Emails</h3>
+            <p>All emails are automatically deleted after 24 hours</p>
+          </div>
+          <div class="feature-card">
+            <h3>🛡️ No Tracking</h3>
+            <p>We don't store IP addresses or browsing data</p>
+          </div>
+          <div class="feature-card">
+            <h3>📥 Unlimited Inboxes</h3>
+            <p>Create as many temporary emails as you need</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-section" id="usage-guide">
+        <h2>📖 Usage Guide</h2>
+        <h3>Best Practices</h3>
+        <ul class="best-practices">
+          <li>✅ Use for one-time signups</li>
+          <li>✅ Verify new services</li>
+          <li>✅ Avoid spam-filled websites</li>
+          <li>❌ Don't use for sensitive communications</li>
+          <li>❌ Don't rely for long-term storage</li>
+        </ul>
+
+        <h3>Keyboard Shortcuts</h3>
+        <div class="shortcut-list">
+          <div class="shortcut">
+            <kbd>Ctrl</kbd> + <kbd>R</kbd>
+            <span>Refresh inbox</span>
+          </div>
+          <div class="shortcut">
+            <kbd>Ctrl</kbd> + <kbd>C</kbd>
+            <span>Copy email address</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-section" id="faq">
+        <h2>❓ Frequently Asked Questions</h2>
+        <div class="faq-item">
+          <h3>Q: How long do emails stay in my inbox?</h3>
+          <p>A: All messages are automatically deleted after 24 hours.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Q: Can I recover deleted emails?</h3>
+          <p>A: No, deleted emails are permanently removed from our servers.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Q: Is this service really free?</h3>
+          <p>A: Yes! TempMail is completely free to use, supported by non-intrusive ads.</p>
+        </div>
+      </div>
+
+      <div class="doc-section" id="troubleshooting">
+        <h2>🔧 Troubleshooting</h2>
+        <h3>Common Issues</h3>
+        <div class="issue">
+          <h4>Emails not arriving?</h4>
+          <ul>
+            <li>Check spam/junk folders in the receiving service</li>
+            <li>Generate a new email address</li>
+            <li>Wait 2-3 minutes and refresh</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-info">
+        <p>© <span id="current-year"></span> TempMail. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* Additional Documentation Styles */
+    .doc-section {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-list {
+      line-height: 2;
+      padding-left: 1.5rem;
+    }
+
+    .example-box {
+      background: var(--background);
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      font-family: monospace;
+    }
+
+    .best-practices {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .best-practices li {
+      padding: 0.5rem 0;
+    }
+
+    .shortcut-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .shortcut {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    kbd {
+      background: var(--background);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .faq-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .faq-item h3 {
+      color: var(--primary);
+    }
+  </style>
+
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

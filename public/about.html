@@ -1,175 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About - TempMail</title>
-  <meta name="description" content="Learn more about TempMail's mission, team and vision. Protect your privacy using our secure disposable email tool.">
-  <meta name="keywords" content="temporary email, disposable email, temp mail, email privacy, about tempmail">
-  <meta name="author" content="TempMail Team">
-
-  <!-- Open Graph Tags -->
-  <meta property="og:title" content="About TempMail - Secure Temporary Email">
-  <meta property="og:description" content="TempMail offers secure and disposable email addresses. Learn about our values, vision, and mission to protect your online identity.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.tempmail.example/about.html">
-  <meta property="og:image" content="https://www.tempmail.example/assets/tempmail-preview.png">
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
-
-  <style>
-    :root {
-      --primary: #4f46e5;
-      --background: #f9f9f9;
-      --card: #ffffff;
-      --muted: #666;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--background);
-      color: #111;
-      margin: 0;
-    }
-
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: white;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      flex-wrap: wrap;
-    }
-
-    .top-bar h1 {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-
-    .top-bar h1 a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 0.5rem;
-    }
-
-    .buttons button {
-      padding: 0.45rem 1rem;
-      border: none;
-      border-radius: 8px;
-      background: var(--primary);
-      color: white;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .buttons button:nth-child(1) {
-      background: #e5e7eb;
-      color: #111;
-    }
-
-    .buttons button:hover {
-      opacity: 0.9;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 3rem auto;
-      background: var(--card);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
-    }
-
-    h1 {
-      font-size: 1.9rem;
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-size: 1.4rem;
-      color: var(--primary);
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
-
-    footer {
-      margin: 4rem auto 1rem;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #999;
-    }
-
-    footer a {
-      color: var(--muted);
-      margin: 0 0.5rem;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media screen and (max-width: 600px) {
-      .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .buttons {
-        margin-top: 1rem;
-      }
-
-      .container {
-        margin: 2rem 1rem;
-        padding: 1.5rem;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - TempMail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <div class="top-bar">
-    <h1><a href="index.html">📩 TempMail</a></h1>
-    <div class="buttons">
-      <button>Help</button>
-      <button>Premium</button>
-      <button style="background:black;">Sign Up</button>
+  <!-- Same header as privacy.html -->
+  <header class="top-bar">
+    <div class="top-bar-content">
+      <a href="/" class="logo">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        TempMail
+      </a>
+      <div class="buttons">
+        
+        <button class="btn btn-primary" onclick="window.location.href='/'">
+            ← Back to Home
+          </button>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <div class="container">
-    <h1>About TempMail</h1>
-    <p><strong>TempMail</strong> is a secure and privacy-focused temporary email service that allows you to generate disposable email addresses in seconds. Whether you’re signing up for a newsletter, verifying an app, or protecting your identity, TempMail ensures your inbox stays clean and your data remains private.</p>
+  <main class="main-content">
+    <div class="content-card">
+      <h1>About TempMail</h1>
+      <p class="text-muted">Protecting your privacy since 2020</p>
+      
+      <h2>Our Mission</h2>
+      <p>We provide secure, temporary email addresses to help you maintain online privacy.</p>
+      
+      <h2>Features</h2>
+      <ul>
+        <li>No registration required</li>
+        <li>Automatic email deletion</li>
+        <li>24/7 service availability</li>
+      </ul>
+    </div>
+  </main>
 
-    <h2>🚀 Our Mission</h2>
-    <p>We aim to empower users to navigate the internet freely without compromising their privacy. Our goal is to offer a fast, ad-light, and secure way to receive emails without revealing your real address.</p>
-
-    <h2>🔒 Why TempMail?</h2>
-    <p>Most websites require email verification, but sharing your personal inbox can expose you to spam and trackers. TempMail solves that by acting as a buffer – giving you a shield between your real identity and the web.</p>
-
-    <h2>💡 Our Vision</h2>
-    <p>We believe the future of digital interaction lies in giving people full control over their personal data. TempMail will continue evolving to support anonymous communication tools while staying free and easy to use.</p>
-  </div>
-
-  <footer>
-    <a href="/privacy.html">Privacy Policy</a> |
-    <a href="/terms.html">Terms of Service</a> |
-    <a href="/about.html">About</a> |
-    <a href="/contact.html">Contact</a>
+  <!-- Same footer as privacy.html -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-info">
+        <p>© <span id="current-year"></span> TempMail. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
 
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
