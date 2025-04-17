@@ -199,6 +199,8 @@
     }
 
     .empty-state {
+      display: flex;
+      flex-direction: column;
       text-align: center;
       padding: 4rem 2rem;
       color: var(--muted);
@@ -209,6 +211,7 @@
       margin-bottom: 1rem;
       opacity: 0.5;
     }
+
 
     /* Responsive Design */
     @media (max-width: 768px) {
@@ -335,6 +338,14 @@
       gap: 0.75rem;
     }
   }
+
+  .btn-group {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  flex-wrap: wrap; /* Optional: wraps on smaller screens */
+  align-items: center;
+}
+
   </style>
 </head>
 <body>
@@ -398,27 +409,26 @@
         <div class="inbox-header">
           <h3 class="inbox-title">Inbox</h3>
           <div class="btn-group">
-            <button class="btn btn-secondary">⏳ Auto-Refresh: On</button>
+            <button class="btn btn-secondary" id="autoRefreshBtn" onclick="toggleAutoRefresh()">
+              ⏳ Auto-Refresh: On
+            </button>
+            <button class="btn btn-secondary" onclick="manualRefresh()">
+              🔄 Refresh Now
+            </button>
           </div>
         </div>
-        
         <ul class="email-list" id="inbox">
-          <li class="email-item unread">
-            <div class="email-subject">Welcome to TempMail!</div>
-            <div class="email-preview">Thank you for choosing our service...</div>
-          </li>
-          <!-- More email items would go here -->
+          <!-- Email items will be dynamically inserted here -->
         </ul>
-
-        <div class="empty-state">
+        <div class="empty-state" style="display: none;">
           <div class="empty-state-icon">📭</div>
           <h4>No messages yet</h4>
           <p>Your temporary inbox is ready to receive emails</p>
         </div>
       </div>
     </div>
-  </div>
-    <!-- ✅ Middle Ad -->
+  
+  <!-- ✅ Middle Ad -->
 
 
     <div class="ad-container">
@@ -441,7 +451,7 @@
             <a href="/contact.html">Contact</a>
           </div>
           <div class="footer-info">
-            <p>© <span id="current-year"></span> TempMail. All rights reserved.</p>
+            <p>© <span id="current-year"></span> TempMailr. All rights reserved.</p>
             <div class="footer-social">
               <a href="#" aria-label="Twitter">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -453,51 +463,211 @@
           </div>
         </div>
       </footer>
+
+
       <script>
-        // Initialize ads
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        
-        // Set current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    
-        // Enhanced email generation with loading state
+        let autoRefreshEnabled = true;
+        let autoRefreshInterval = null;
+        let currentToken = null;
+      
+        // Runs on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+          document.getElementById('current-year').textContent = new Date().getFullYear();
+          await checkExistingSession();
+          startAutoRefresh();
+          try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          } catch (e) {}
+        });
+      
+        async function checkExistingSession() {
+          const savedEmail = localStorage.getItem('tempEmail');
+          const savedPassword = localStorage.getItem('tempPassword');
+          if (savedEmail && savedPassword && savedEmail !== 'generating@temporary.in') {
+            document.getElementById('email').textContent = savedEmail;
+            await loginAndFetchEmails(savedEmail, savedPassword);
+          }
+        }
+      
         async function generateEmail() {
           const emailDisplay = document.getElementById('email');
           const refreshBtn = document.querySelector('.refresh-button');
-          
-          emailDisplay.classList.add('loading');
-          refreshBtn.disabled = true;
-          
+      
           try {
-            await new Promise(resolve => setTimeout(resolve, 800));
-            emailDisplay.textContent = `${Math.random().toString(36).substring(2, 10)}@temp-mail.io`;
+            emailDisplay.classList.add('loading');
+            refreshBtn.disabled = true;
+      
+            const res = await fetch('/create-email');
+            if (!res.ok) throw new Error('Failed to create email');
+            const { email, password } = await res.json();
+      
+            emailDisplay.textContent = email;
+            localStorage.setItem('tempEmail', email);
+            localStorage.setItem('tempPassword', password);
+      
+            await loginAndFetchEmails(email, password);
+            refreshAds();
+          } catch (err) {
+            showError(err.message);
           } finally {
             emailDisplay.classList.remove('loading');
             refreshBtn.disabled = false;
           }
         }
-    
-        // Improved copy function with accessibility
+      
+        async function loginAndFetchEmails(email, password) {
+          try {
+            const loginRes = await fetch('/token', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ address: email, password })
+            });
+      
+            if (!loginRes.ok) throw new Error('Login failed');
+            const { token } = await loginRes.json();
+            currentToken = token;
+      
+            await fetchEmails();
+          } catch (error) {
+            showError(error.message);
+          }
+        }
+      
+        async function fetchEmails() {
+          try {
+            if (!currentToken) return;
+            const res = await fetch('/get-emails', {
+              headers: { Authorization: `Bearer ${currentToken}` }
+            });
+      
+            if (!res.ok) throw new Error('Failed to fetch emails');
+            const emails = await res.json();
+            renderEmails(emails);
+          } catch (error) {
+            showError(error.message);
+          }
+        }
+      
+        function renderEmails(emails) {
+          const inbox = document.getElementById('inbox');
+          const emptyState = document.querySelector('.empty-state');
+      
+          inbox.innerHTML = '';
+      
+          if (emails.length > 0) {
+            emails.forEach(email => {
+              const li = document.createElement('li');
+              li.className = `email-item ${email.seen ? 'read' : 'unread'}`;
+              li.innerHTML = `
+                <div class="email-subject">${email.subject || 'No Subject'}</div>
+                <div class="email-preview">${email.intro || 'No preview available'}</div>
+                <div class="email-meta">From: ${email.from?.address || 'Unknown sender'}</div>
+              `;
+              li.onclick = () => showEmailDetail(email.id);
+              inbox.appendChild(li);
+            });
+            emptyState.style.display = 'none';
+          } else {
+            emptyState.style.display = 'flex';
+          }
+        }
+      
+        async function showEmailDetail(messageId) {
+          try {
+            const res = await fetch(`/get-email/${messageId}`, {
+              headers: { Authorization: `Bearer ${currentToken}` }
+            });
+      
+            const emailData = await res.json();
+      
+            const modal = document.createElement('div');
+            modal.className = 'email-modal';
+            modal.innerHTML = `
+              <div class="modal-content">
+                <h3>${emailData.subject}</h3>
+                <div class="modal-header">
+                  <div>From: ${emailData.from?.address}</div>
+                  <div>Date: ${new Date(emailData.createdAt).toLocaleString()}</div>
+                </div>
+                <div class="modal-body">${emailData.text || emailData.html || 'No content'}</div>
+                <button onclick="this.parentElement.parentElement.remove()">Close</button>
+              </div>
+            `;
+            document.body.appendChild(modal);
+          } catch (error) {
+            showError('Failed to load email details');
+          }
+        }
+      
+        function startAutoRefresh() {
+          stopAutoRefresh();
+          autoRefreshInterval = setInterval(fetchEmails, 10000);
+          document.getElementById('autoRefreshBtn').textContent = '⏳ Auto-Refresh: On';
+          autoRefreshEnabled = true;
+        }
+      
+        function stopAutoRefresh() {
+          clearInterval(autoRefreshInterval);
+          autoRefreshEnabled = false;
+          document.getElementById('autoRefreshBtn').textContent = '⏳ Auto-Refresh: Off';
+        }
+      
+        function toggleAutoRefresh() {
+          if (autoRefreshEnabled) {
+            stopAutoRefresh();
+          } else {
+            startAutoRefresh();
+            fetchEmails(); // immediate fetch
+          }
+        }
+      
+        function refreshAds() {
+          try {
+            if (typeof adsbygoogle !== 'undefined') {
+              adsbygoogle = window.adsbygoogle || [];
+              adsbygoogle.forEach(ads => ads.request());
+            }
+          } catch (e) {}
+        }
+      
+        function showError(message) {
+          const errorDiv = document.createElement('div');
+          errorDiv.className = 'error-toast';
+          errorDiv.textContent = message;
+          document.body.appendChild(errorDiv);
+          setTimeout(() => errorDiv.remove(), 3000);
+        }
+      
         function copyEmail() {
           const email = document.getElementById('email').textContent;
-          navigator.clipboard.writeText(email).then(() => {
-            const btn = document.querySelector('[onclick="copyEmail()"]');
-            const originalText = btn.textContent;
-            btn.textContent = '✓ Copied!';
-            btn.setAttribute('aria-label', 'Email address copied to clipboard');
-            setTimeout(() => {
-              btn.textContent = originalText;
-              btn.removeAttribute('aria-label');
-            }, 2000);
-          });
+          navigator.clipboard.writeText(email)
+            .then(() => {
+              const btn = document.querySelector('[onclick="copyEmail()"]');
+              btn.textContent = '✓ Copied!';
+              setTimeout(() => btn.textContent = '📋 Copy Address', 2000);
+            })
+            .catch(() => showError('Failed to copy email'));
         }
-    
-        // Toggle empty state visibility
-        function updateInboxVisibility() {
-          const emailList = document.getElementById('inbox');
-          const emptyState = document.querySelector('.empty-state');
-          emptyState.style.display = emailList.children.length > 0 ? 'none' : 'flex';
-        }
+
+
+async function manualRefresh() {
+  const btn = document.querySelector('[onclick="manualRefresh()"]');
+  try {
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Refreshing...';
+    await fetchEmails();
+  } catch (error) {
+    showError("Refresh failed: " + error.message);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '🔄 Refresh';
+  }
+}
+
+
       </script>
+      
+      
+      
 </body>
 </html>

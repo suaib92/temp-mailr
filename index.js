@@ -98,6 +98,17 @@ app.get("/get-emails", async (req, res) => {
   }
 });
 
+app.post("/token", async (req, res) => {
+  const { address, password } = req.body;
+  try {
+    const loginRes = await apiClient.post("/token", { address, password });
+    res.json({ token: loginRes.data.token });
+  } catch (err) {
+    res.status(401).json({ error: "Login failed", details: err.response?.data || err.message });
+  }
+});
+
+
 // Only start the server after fetching domain
 const startServer = async () => {
   await fetchDomain();
