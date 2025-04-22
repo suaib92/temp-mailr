@@ -18,8 +18,8 @@
       </a>
       <div class="buttons">
         <button class="btn btn-primary" onclick="window.location.href='/'">
-            ← Back to Home
-          </button>
+          ← Back to Home
+        </button>
       </div>
     </div>
   </header>
@@ -27,7 +27,7 @@
   <main class="main-content">
     <div class="content-card">
       <h1>TempMailr Documentation</h1>
-      <p class="text-muted">Your guide to using our temporary email service effectively</p>
+      <p class="text-muted">Your guide to using our temporary email service effectively. This page contains detailed instructions, tips, and explanations to help you get the most out of TempMailr.</p>
 
       <div class="doc-section">
         <h2>📚 Table of Contents</h2>
@@ -44,7 +44,7 @@
         <h2>🚀 Getting Started</h2>
         <div class="step">
           <h3>1. Generate Email Address</h3>
-          <p>Click the "Generate Email" button to create a random temporary email address.</p>
+          <p>Click the "Generate Email" button on our homepage to instantly create a new temporary email address.</p>
           <div class="example-box">
             <code>example@tempmailr.in</code>
           </div>
@@ -52,12 +52,12 @@
 
         <div class="step">
           <h3>2. Use Your Temporary Email</h3>
-          <p>Use the generated email address for signups, verifications, or any temporary need.</p>
+          <p>Copy and paste your new email wherever required—ideal for signing up to websites, newsletters, or testing forms.</p>
         </div>
 
         <div class="step">
           <h3>3. Check Your Inbox</h3>
-          <p>Messages will appear automatically in your inbox. No registration required!</p>
+          <p>Your inbox will automatically receive messages without needing to reload the page. We refresh your mailbox in real-time.</p>
         </div>
       </div>
 
@@ -66,15 +66,15 @@
         <div class="feature-grid">
           <div class="feature-card">
             <h3>⏳ Auto-Expiring Emails</h3>
-            <p>All emails are automatically deleted after 24 hours</p>
+            <p>All emails are automatically deleted after 24 hours to maintain privacy and security.</p>
           </div>
           <div class="feature-card">
             <h3>🛡️ No Tracking</h3>
-            <p>We don't store IP addresses or browsing data</p>
+            <p>We don't log IP addresses, device fingerprints, or browsing history. Your activity stays yours.</p>
           </div>
           <div class="feature-card">
             <h3>📥 Unlimited Inboxes</h3>
-            <p>Create as many temporary emails as you need</p>
+            <p>Create, copy, and manage unlimited email addresses with zero limitations or restrictions.</p>
           </div>
         </div>
       </div>
@@ -83,11 +83,10 @@
         <h2>📖 Usage Guide</h2>
         <h3>Best Practices</h3>
         <ul class="best-practices">
-          <li>✅ Use for one-time signups</li>
-          <li>✅ Verify new services</li>
-          <li>✅ Avoid spam-filled websites</li>
-          <li>❌ Don't use for sensitive communications</li>
-          <li>❌ Don't rely for long-term storage</li>
+          <li>✅ Use for one-time signups and test accounts</li>
+          <li>✅ Avoid giving away your real email to unfamiliar sources</li>
+          <li>❌ Don’t use for sensitive or personal communications</li>
+          <li>❌ Emails will be lost after expiry—don’t rely on them for storage</li>
         </ul>
 
         <h3>Keyboard Shortcuts</h3>
@@ -107,15 +106,15 @@
         <h2>❓ Frequently Asked Questions</h2>
         <div class="faq-item">
           <h3>Q: How long do emails stay in my inbox?</h3>
-          <p>A: All messages are automatically deleted after 24 hours.</p>
+          <p>A: 24 hours from the time they are received. Then they are deleted permanently.</p>
         </div>
         <div class="faq-item">
           <h3>Q: Can I recover deleted emails?</h3>
-          <p>A: No, deleted emails are permanently removed from our servers.</p>
+          <p>A: No. Once an email is deleted, it is erased securely with no backups.</p>
         </div>
         <div class="faq-item">
           <h3>Q: Is this service really free?</h3>
-          <p>A: Yes! TempMailr is completely free to use, supported by non-intrusive ads.</p>
+          <p>A: Absolutely. TempMailr is 100% free to use, made possible through minimal, non-intrusive ads.</p>
         </div>
       </div>
 
@@ -125,9 +124,10 @@
         <div class="issue">
           <h4>Emails not arriving?</h4>
           <ul>
-            <li>Check spam/junk folders in the receiving service</li>
-            <li>Generate a new email address</li>
-            <li>Wait 2-3 minutes and refresh</li>
+            <li>Ensure you copied the correct email address</li>
+            <li>Try generating a fresh email</li>
+            <li>Wait a few minutes and hit refresh</li>
+            <li>Note: Some platforms block disposable email domains</li>
           </ul>
         </div>
       </div>
@@ -143,67 +143,10 @@
         <a href="contact.html">Contact</a>
       </div>
       <div class="footer-info">
-        <p>© <span id="current-year"></span> TempMailr . All rights reserved.</p>
+        <p>© <span id="current-year"></span> TempMailr. All rights reserved.</p>
       </div>
     </div>
   </footer>
-
-  <style>
-    /* Additional Documentation Styles */
-    .doc-section {
-      margin-bottom: 3rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .toc-list {
-      line-height: 2;
-      padding-left: 1.5rem;
-    }
-
-    .example-box {
-      background: var(--background);
-      padding: 1rem;
-      border-radius: 8px;
-      margin: 1rem 0;
-      font-family: monospace;
-    }
-
-    .best-practices {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .best-practices li {
-      padding: 0.5rem 0;
-    }
-
-    .shortcut-list {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .shortcut {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    kbd {
-      background: var(--background);
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-    }
-
-    .faq-item {
-      margin-bottom: 1.5rem;
-    }
-
-    .faq-item h3 {
-      color: var(--primary);
-    }
-  </style>
 
   <script>
     document.getElementById('current-year').textContent = new Date().getFullYear();
